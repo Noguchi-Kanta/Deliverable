@@ -20,6 +20,7 @@ class PostSeeder extends Seeder
             'user_id' => 1,
             'title' => '5級クリア',
             'body' => '○○ジムの5級の課題登れた！',
+            //'image_path' => NULL,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);
