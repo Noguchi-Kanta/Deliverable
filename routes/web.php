@@ -18,12 +18,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/posts', [PostController::class, 'index']);
-
-Route::get('/', function() {
-    return view('posts.index');
-});
-
+Route::get('/', [PostController::class, 'index']);
+Route::get('/posts/{post}', [PostController::class ,'show']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
