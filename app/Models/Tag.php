@@ -19,7 +19,7 @@ class Category extends Model
         return $this->posts()->with('tag')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
-     protected $fillable = [
+    protected $fillable = [
         'name',
     ];
 }

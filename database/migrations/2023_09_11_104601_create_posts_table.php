@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title', 50);
             $table->string('body', 200);
             $table->string('image_path')->nullable();
-            //$table->foreignId('tag_id')->constrained();
+            $table->foreignId('tag_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
