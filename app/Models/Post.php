@@ -27,7 +27,7 @@ class Post extends Model
         return $this::with('tag')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 
-    public function category()
+    public function tag()
     {
         return $this->belongsTo(Tag::class);
     }
