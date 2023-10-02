@@ -33,10 +33,11 @@ class PostController extends Controller
     
     public function store(Request $request, Post $post)
     {
-        $input = $request['post'];
-        $input['user_id'] = Auth::id();
-        $input['tag_id'] = 1;
-        $post->fill($input)->save();
+        $input_post = $request['post'];
+        $input_tag = $request->tag_array;
+        $posts->fill($input_post)->save();
+        //$input['user_id'] = Auth::id();
+        $posts->tags()->attach($input_tag);
         return redirect('/posts/' . $post->id);
     }
 }
