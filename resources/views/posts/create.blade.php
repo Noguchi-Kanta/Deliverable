@@ -24,9 +24,9 @@
                 <h2>タグ</h2>
                 @foreach($tags as $tag)
                     <label>
-                    <input type="checkbox" value="{{ $tag->id }}" name="tag_array[]">
-                        {{$tag->tag_name}}
-                    </input>
+                        <input type="checkbox" value="{{ $tag->id }}" name="tags_array[]">
+                            {{$tag->name}}
+                        </input>
                     </label>
                 @endforeach
             </div>

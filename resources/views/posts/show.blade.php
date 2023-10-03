@@ -17,6 +17,12 @@
                 <p>{{ $post->body }}</p>    
             </div>
         </div>
+        <div class="tag">
+            <div class="tag__post">
+                <h3>タグ</h3>
+                <p>{{ $tag->name }}</p>  
+            </div>
+        </div>
         <div class="footer">
             <a href="/">戻る</a>
         </div>

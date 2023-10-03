@@ -15,15 +15,10 @@ class PostController extends Controller
         return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]); 
     }
     
-    public function show(Post $post)
+    public function show(Post $post, Tag $tag)
     {
-        return view('posts.show')->with(['post' => $post]);
+        return view('posts.show')->with(['post' => $post, 'tag' => $tag->first() ]);
     }
-    
-    //public function create()
-    //{
-       // return view('posts.create');
-    //}
     
     public function create(Tag $tag)
     {
@@ -34,10 +29,11 @@ class PostController extends Controller
     public function store(Request $request, Post $post)
     {
         $input_post = $request['post'];
-        $input_tag = $request->tag_array;
-        $posts->fill($input_post)->save();
-        //$input['user_id'] = Auth::id();
-        $posts->tags()->attach($input_tag);
+        $input_tags = $request->tags_array;
+        $input_post['user_id'] = Auth::id();
+        $post->fill($input_post)->save();
+        $post->tags()->attach($input_tags);
         return redirect('/posts/' . $post->id);
     }
+    
 }
