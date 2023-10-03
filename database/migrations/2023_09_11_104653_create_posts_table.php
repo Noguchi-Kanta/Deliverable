@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title', 50);
             $table->string('body', 200);
-            $table->string('image_path')->nullable();
+            //$table->string('image_path')->nullable();
             //$table->foreignId('tag_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
