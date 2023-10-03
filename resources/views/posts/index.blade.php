@@ -16,6 +16,16 @@
                         <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                     </h2>
                     <p class='body'>{{ $post->body }}</p>
+                    @if($post->image_path)
+                    <div>
+                        <img src="{{ $post->image_path }}" alt="画像が読み込めません。"/>
+                    </div>
+                    @endif
+                    <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post"
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
+                    </form>
                 </div>
             @endforeach
             
@@ -23,5 +33,13 @@
         <div class='paginate'>
             {{ $posts->links() }}
         </div>
+        <script>
+            function deletePost(id) {
+                'use strict'
+                if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                    document.getElementById(`form_${id}`).submit();
+                }
+            }
+        </script>
     </body>
 </html>
