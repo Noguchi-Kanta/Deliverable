@@ -17,6 +17,11 @@
                 <p>{{ $post->body }}</p>    
             </div>
         </div>
+        @if($post->image_path)
+        <div>
+            <img src="{{ $post->image_path }}" alt="画像が読み込めません。"/>
+        </div>
+        @endif
         <div class="tag">
             <div class="tag__post">
                 <h3>タグ</h3>
