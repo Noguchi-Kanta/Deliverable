@@ -28,6 +28,19 @@
                 <p>{{ $tag->name }}</p>  
             </div>
         </div>
+        <form action="/{{ $post->id }}/comment" method="post">
+            @csrf
+            <h3>コメントをする</h3>
+            <textarea name="comments[body]"></textarea>
+            <input type="submit"  value="送信"/>
+        </form>
+        <div>
+            <h3>コメント一覧</h3>
+            @foreach($comments as $comment)
+                <p>コメントした人：{{ $comment->user->name }}</p>
+                <p>　　  コメント：{{ $comment->body }}</p>
+            @endforeach
+        </div>
         <div class="footer">
             <a href="/">戻る</a>
         </div>
