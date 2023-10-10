@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\Comment;
 use Cloudinary;
 
 class PostController extends Controller
@@ -16,9 +17,9 @@ class PostController extends Controller
         return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]); 
     }
     
-    public function show(Post $post, Tag $tag)
+    public function show(Post $post, Tag $tag, Comment $comment)
     {
-        return view('posts.show')->with(['post' => $post, 'tag' => $tag->first() ]);
+        return view('posts.show')->with(['post' => $post, 'tag' => $tag->first(), 'comments' => $post -> comments()->get() ]);
     }
     
     public function create(Tag $tag)
