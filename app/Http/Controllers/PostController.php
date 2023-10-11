@@ -41,11 +41,27 @@ class PostController extends Controller
         $post->tags()->attach($input_tags);
         return redirect('/posts/' . $post->id);
     }
-    
+
     public function delete(Post $post)
     {
         $post->delete();
         return redirect('/');
     }
     
+    public function search(Request $request)
+    {
+        $search = $request->input('keyword');
+        $query = Posts::query();
+        
+        if(!empty($search)) {
+            $query->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('body', 'LIKE', "%{$search}%");
+        } 
+        
+        $posts = $query->get();
+        return view('posts/index', compact('posts', 'keyword'));
+        //$posts = $query->orderBy('id','desc')->paginate(10);
+        //return view('index', ['posts' => $posts, 'search' => $search]);
+   
+    }
 }
