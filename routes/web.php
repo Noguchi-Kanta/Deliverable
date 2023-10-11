@@ -25,10 +25,12 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::post('/posts', 'store')->name('store');
     Route::get('/posts/{post}', 'show')->name('show');
     Route::delete('/posts/{post}', 'delete')->name('delete');
+    //Route::get('/posts/search', 'search')->name('search');
 });
 
 Route::resource('comment', 'CommentController', ['only' => ['']]);
 Route::post('/{post}/comment', [CommentController::class, 'comment'])->name('comment')->middleware('auth');
+Route::get('/posts/search', [PostController::class, 'search'])->name('search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
