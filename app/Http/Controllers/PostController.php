@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\Comment;
+use App\Models\User;
 use Cloudinary;
 
 class PostController extends Controller
 {
     
-    public function index(Post $post)
+    public function index(Post $post, User $user)
     {
-        return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]); 
+        return view('posts.index')->with(['posts' => $post->getPaginateByLimit(), 'users' => $user->get()]); 
     }
     
     public function show(Post $post, Tag $tag, Comment $comment)
@@ -50,16 +52,16 @@ class PostController extends Controller
     
     public function search(Request $request)
     {
+        //$keyword = $request->input('keyword');
         $search = $request->input('keyword');
-        $query = Posts::query();
-        
+        $query = Post::query();
         if(!empty($search)) {
             $query->where('title', 'LIKE', "%{$search}%")
                 ->orWhere('body', 'LIKE', "%{$search}%");
         } 
         
         $posts = $query->get();
-        return view('posts/index', compact('posts', 'keyword'));
+        return view('posts.index', compact('posts', 'search'));
         //$posts = $query->orderBy('id','desc')->paginate(10);
         //return view('index', ['posts' => $posts, 'search' => $search]);
    
