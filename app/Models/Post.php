@@ -24,6 +24,11 @@ class Post extends Model
     {
         return $this::with('tags')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 
     public function tags()
     {

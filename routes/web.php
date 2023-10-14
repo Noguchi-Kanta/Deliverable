@@ -21,8 +21,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-//Route::get('/posts/search', [PostController::class, 'search'])->name('search');
-
 Route::controller(PostController::class)->middleware(['auth'])->group(function(){
     Route::get('/','index')->name('index');
     Route::get('/posts/create', 'create')->name('create');
@@ -43,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/user/{id}/index', [UserController::class, 'index'])->name('user.index');
 
 Route::middleware('auth')->group(function() {
     Route::group(['prefix'=>'posts/{id}'],function(){

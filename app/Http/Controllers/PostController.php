@@ -15,7 +15,8 @@ class PostController extends Controller
 {
     
     public function index(Post $post, User $user)
-    {
+    {   
+        $query = Post::query();
         return view('posts.index')->with(['posts' => $post->getPaginateByLimit(), 'users' => $user->get()]); 
     }
     
@@ -52,7 +53,6 @@ class PostController extends Controller
     
     public function search(Request $request)
     {
-        //$keyword = $request->input('keyword');
         $search = $request->input('keyword');
         $query = Post::query();
         if(!empty($search)) {
@@ -60,10 +60,8 @@ class PostController extends Controller
                 ->orWhere('body', 'LIKE', "%{$search}%");
         } 
         
-        $posts = $query->get();
-        return view('posts.index', compact('posts', 'search'));
-        //$posts = $query->orderBy('id','desc')->paginate(10);
-        //return view('index', ['posts' => $posts, 'search' => $search]);
+        $posts = $query->orderBy('id','desc')->paginate(10);
+        return view('posts.index', ['posts' => $posts, 'search' => $search]);
    
     }
 }
