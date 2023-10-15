@@ -1,11 +1,15 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
+    <x-app-layout>
+    <x-slot name="header">
         <meta charset="utf-8">
         <title>Blog</title>
-    </head>
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+            投稿作成
+    </x-slot>
     <body>
-        <h1>Blog Name</h1>
+        <p style="padding;15px; font-size:30px; font-weight:bold">Boulderer</p>
         <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">
@@ -36,4 +40,5 @@
             <a href="/">戻る</a>
         </div>
     </body>
+    </x-app-layout>
 </html>

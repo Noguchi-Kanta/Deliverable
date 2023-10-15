@@ -21,8 +21,9 @@ class PostController extends Controller
     }
     
     public function show(Post $post, Tag $tag, Comment $comment)
-    {
-        return view('posts.show')->with(['post' => $post, 'tag' => $tag->first(), 'comments' => $post -> comments()->get() ]);
+    {   
+        //$tag = DB::table('tags')->find($id);
+        return view('posts.show')->with(['post' => $post, 'tags' => $tag->get(), 'comments' => $post->comments()->get()]);
     }
     
     public function create(Tag $tag)

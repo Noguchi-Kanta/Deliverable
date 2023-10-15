@@ -18,6 +18,7 @@ class Post extends Model
         'body',
         'image_path',
         'user_id',
+        'tag_id',
     ];
 
     public function getPaginateByLimit(int $limit_count = 5)
@@ -32,7 +33,7 @@ class Post extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'post_tag', 'post_id', 'tag_id');
     }
     
     public function comments()

@@ -6,10 +6,10 @@
         <title>blog</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-            ホーム
+            カテゴリー一覧
     </x-slot>
         <body class="bg-gray-500" style="background-color">
-            <p style="padding;15px; font-size:30px; font-weight:bold">Boulderer</p>
+            <h1 style="padding;15px; font-size:30px; font-weight:bold">Boulderer</h1>
             <div>
            　    <form action="{{ route('search') }}" method="GET" style="padding-left:20px; margin-top:20px; margin-bottom:20px">
                     <input type="text" name="keyword" value="@if(isset($search)){{ $search }}@endif" placeholder="キーワードを入力" style='padding-right:150px;'>
@@ -22,15 +22,12 @@
             @foreach ($posts as $post)
             <div class="post" style="border:double">
                 <div class="user_name">
-                    @if (Auth::user()->id == $post->user_id) 
-                    <p><a href = "/my_page/">{{ $post->user->name }}</a></p>
-                    @else
                     <p>{{ $post->user->name }}</p>
-                    @endif
+                    <!--{{ optional(Auth::user())->name }} -->
                 </div>
-                <p class='title'>
+                <h2 class='title'>
                      <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
-                </p>
+                </h2>
                 <p class='body'>{{ $post->body }}</p>
                 @if($post->image_path)
                 <div>
@@ -48,14 +45,6 @@
                 </form>
                 @endif
                 
-                <div class="text-right mr-15">コメント数
-                  <span class="badge badge-pill badge-suc cess">{{ $post->comments->count() }}</span>
-                </div>
-                
-                <div class="text-right mr-15">いいね！
-                  <span class="badge badge-pill badge-suc cess">{{ $post->like_users->count() }}</span>
-                </div>
-                
                 @if (Auth::user()->is_like($post->id))
                 <form method="POST" action="{{ route('likes.unlike', $post->id) }}" style="border:inset; width:7%; padding:2px; text-align:center; background-color:rgba(255,105,180,0.5)">
                     @csrf
@@ -63,12 +52,16 @@
                     <button type="submit" class="button btn btn-warning">いいね！</button>
                 </form>
                 @else
-                <form method="POST" action="{{ route('likes.like', $post->id) }}" style="border:outset; width:7%; padding:2px; text-align:center">
+                <form method="POST" action="{{ route('likes.like', $post->id) }}" style="border:outset; width:7%; padding:10px; text-align:center">
    　　　　　　　    　　　　 @csrf
                      <button type="submit" class="button btn btn-success">いいね！</button>
                 </form>
                 @endif
                 
+                <div class="text-right mr-15">いいね！
+                  <span class="badge badge-pill badge-suc cess">{{ $post->like_users->count() }}</span>
+                </div>
+    
             </div>
             @endforeach
         　　</div>

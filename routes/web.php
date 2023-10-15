@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -33,15 +34,21 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
 
 Route::resource('comment', 'CommentController', ['only' => ['']]);
 Route::post('/{post}/comment', [CommentController::class, 'comment'])->name('comment')->middleware('auth');
-//Route::get('/posts/search', [PostController::class, 'search'])->name('search');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::controller(UserController::class)->middleware('auth')->group(function () {
+    Route::get('/my_page/', 'index')->name('my_page.index');
+    Route::post('/my_page/', 'my_page_update')->name('my_page.update');
 });
 
-Route::get('/user/{id}/index', [UserController::class, 'index'])->name('user.index');
+Route::controller(ProfileController::class)->middleware('auth')->group(function () {
+    Route::get('/profile', 'edit')->name('profile.edit');
+    Route::patch('/profile', 'update')->name('profile.update');
+    Route::delete('/profile', 'destroy')->name('profile.destroy');
+});
+
+//Route::get('/user/{id}/index', [UserController::class, 'index'])->name('user.index');
+
+Route::get('/tags/{tag}', [TagController::class,'index']);
 
 Route::middleware('auth')->group(function() {
     Route::group(['prefix'=>'posts/{id}'],function(){
