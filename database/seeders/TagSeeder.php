@@ -18,17 +18,27 @@ class TagSeeder extends Seeder
     public function run()
     {
         DB::table('tags')->insert([
-                'name' => 'a',
+                'name' => '初心者',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);
         DB::table('tags')->insert([
-                'name' => 'b',
+                'name' => '仲間募集',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);
         DB::table('tags')->insert([
-                'name' => 'c',
+                'name' => 'ジム紹介',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+         ]);
+        DB::table('tags')->insert([
+                'name' => '課題作成',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+         ]);    
+        DB::table('tags')->insert([
+                'name' => '今日の成果',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);    

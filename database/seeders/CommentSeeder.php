@@ -14,14 +14,15 @@ class CommentSeeder extends Seeder
      *
      * @return void
      */
+    
     public function run()
     {
-        /**DB::table('posts')->insert([
+        DB::table('comments')->insert([
                 'body' => 'nice!',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
-                'user_id'=>1,
-                'post_id'=>9,
-        ]);**/
+                'user_id'=>2,
+                'post_id'=>1,
+        ]);
     }
 }
