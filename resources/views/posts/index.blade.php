@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <x-app-layout>
-    <x-slot name="header">
+    <head>
         <meta charset="utf-8">
-        <title>blog</title>
+        <title>Blog</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-            ホーム
-    </x-slot>
-        <body class="bg-gray-500" style="background-color">
+    </head>
+    <x-app-layout>
+        <body class="bg-gray-500" style="background-color:red">
             <p style="padding;15px; font-size:30px; font-weight:bold">Boulderer</p>
             <div>
            　    <form action="{{ route('search') }}" method="GET" style="padding-left:20px; margin-top:20px; margin-bottom:20px">

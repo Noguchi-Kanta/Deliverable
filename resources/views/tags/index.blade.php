@@ -6,7 +6,7 @@
         <title>blog</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-            カテゴリー一覧
+            タグ一覧
     </x-slot>
         <body class="bg-gray-500" style="background-color">
             <h1 style="padding;15px; font-size:30px; font-weight:bold">Boulderer</h1>

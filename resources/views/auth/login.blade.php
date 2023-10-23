@@ -38,6 +38,10 @@
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
+            
+             <a href="/register" class="ml-4">
+                {{ __('新規登録') }}
+            </a>
 
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}
