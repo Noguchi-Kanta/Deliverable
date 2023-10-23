@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <x-app-layout>
-    <x-slot name="header">
+    <head>
         <meta charset="utf-8">
         <title>Blog</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-            マイページ
-    </x-slot>
+    </head>
+    <x-app-layout>
     @if (Session::has('message'))
      <p>{{ session('message') }}</p>
     @endif
     
-    @if (Session::has('top_image_path'))
+    {{--@if (Session::has('top_image_path'))
         <img src="https://res.cloudinary.com/dac07avbf/image/upload/v1697346022/no_image_ome59y.png" alt=""> 
     
     @elseif ($user->image_path == "https://res.cloudinary.com/dac07avbf/image/upload/v1697346022/no_image_ome59y.png")
@@ -21,7 +20,7 @@
     @else
         <p><img src="{{ $user->image_path }}" alt=""> </p>
         
-    @endif
+    @endif--}}
     <body>
     <p>名前:{{ $user->name }}</p>
     <p>メールアドレス:{{ $user->email }}</p>
@@ -31,7 +30,7 @@
             <img src="{{ $user->image_path }}" alt="画像が読み込めません。"/>
         </div>
     @endif
-    <p><a href='/profile'>ユーザー情報を変更する</a></p>
+    <p><a href='/user/{{ $user->id}}'>ユーザー情報を変更する</a></p>
    
     
     <!-- マイページ変更画面 -->

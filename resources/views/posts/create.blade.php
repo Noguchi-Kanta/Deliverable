@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <x-app-layout>
-    <x-slot name="header">
+    <head>
         <meta charset="utf-8">
         <title>Blog</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-            投稿作成
-    </x-slot>
+    </head>
+    <x-app-layout>
     <body>
         <p style="padding;15px; font-size:30px; font-weight:bold">Boulderer</p>
         <form action="/posts" method="POST" enctype="multipart/form-data">

@@ -7,6 +7,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
+    <x-app-layout>
     <body>
         <h1 class="title">
             {{ $post->title }}
@@ -26,15 +27,10 @@
             <div class="tag__post">
                 @foreach($tags as $tag)
                 {{--@foreach($post->tags as $tag)--}}
-                <p>タグ:<a href="/tags/{{ $post->tag_id }}" {{--value="{{ $tag->id}}" name="tags_array[]"--}}>{{ $tag->name }}</a></p>
+                <p>タグ:<a href="/tags/{{ $post->tag_id }}">{{ $tag->name }}</a></p>
                 @endforeach
             </div>
         </div>
-        {{-- @foreach ($posts as $post)
-        <hr>s
-        <p>Tags: @foreach ($post->tags as $tag) {{ $tag->name }} @endforeach </p>
-        <p>{{ $post->body }}</p>
-        @endforeach--}}
         <form action="/{{ $post->id }}/comment" method="post">
             @csrf
             <h3>コメントをする</h3>
@@ -52,4 +48,5 @@
             <a href="/">戻る</a>
         </div>
     </body>
+    </x-app-layout>
 </html>

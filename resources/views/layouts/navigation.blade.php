@@ -12,18 +12,21 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{--<x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('ログイン') }}
-                    </x-nav-link>
+                    </x-nav-link>--}}
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                         {{ __('ホーム') }}
                     </x-nav-link>
                     <x-nav-link :href="route('create')" :active="request()->routeIs('create')">
                         {{ __('投稿作成') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('my_page.index')" :active="request()->routeIs('my_page.index')">
+                    {{--<x-nav-link :href="route('my-page.index')" :active="request()->routeIs('my-page.index')">
                         {{ __('マイページ') }}
-                    </x-nav-link>
+                    </x-nav-link>--}}
+                    <x-nav-link :href="route('my-page.index')" :active="request()->routeIs('my-page.index')">
+                        {{ __('マイページ') }}
+                    </x-nav-link>                    
                 </div>
             </div>
 

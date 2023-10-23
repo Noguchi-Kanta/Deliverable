@@ -35,9 +35,13 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
 Route::resource('comment', 'CommentController', ['only' => ['']]);
 Route::post('/{post}/comment', [CommentController::class, 'comment'])->name('comment')->middleware('auth');
 
+/**Route::controller(UserController::class)->middleware('auth')->group(function () {
+    Route::get('/my-page', 'index')->name('my-page.index');
+    Route::patch('/my-page', 'update')->name('my-page.update');
+});**/
 Route::controller(UserController::class)->middleware('auth')->group(function () {
-    Route::get('/my_page/', 'index')->name('my_page.index');
-    Route::post('/my_page/', 'my_page_update')->name('my_page.update');
+    Route::get('/user', 'index')->name('my-page.index');
+    Route::patch('/user/{id}', 'update')->name('my-page.update');
 });
 
 Route::controller(ProfileController::class)->middleware('auth')->group(function () {
@@ -48,7 +52,7 @@ Route::controller(ProfileController::class)->middleware('auth')->group(function 
 
 //Route::get('/user/{id}/index', [UserController::class, 'index'])->name('user.index');
 
-Route::get('/tags/{tag}', [TagController::class,'index']);
+Route::get('/tags/{tag}', [TagController::class,'index'])->middleware('auth');;
 
 Route::middleware('auth')->group(function() {
     Route::group(['prefix'=>'posts/{id}'],function(){

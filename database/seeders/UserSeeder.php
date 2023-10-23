@@ -21,6 +21,8 @@ class UserSeeder extends Seeder
                 'name' => 'user1',
                 'email' => 'user1@gmail.com',
                 'password' => Hash::make('password'),
+                'bio' => 'Hello!',
+                'image_path' => 'https://res.cloudinary.com/dac07avbf/image/upload/v1697370283/top_image_example_evni5p.jpg',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ]);
