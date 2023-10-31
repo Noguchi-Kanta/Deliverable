@@ -9,12 +9,12 @@
     </head>
     <x-app-layout>
     <body>
-        <h1 class="title">
+        <div class="title" style="font-weight:bold; font-size:24px">
             {{ $post->title }}
-        </h1>
+        </div>
         <div class="body">
             <div class="body__post">
-                <h3>本文</h3>
+                <p style="font-weight:bold; font-size:24px">本文</p>
                 <p>{{ $post->body }}</p>    
             </div>
         </div>
