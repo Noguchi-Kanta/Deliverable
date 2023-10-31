@@ -19,7 +19,7 @@
             
             <div class='posts' style="padding-left:20px; margin-top:20px; margin-bottom:20p">
             @foreach ($posts as $post)
-            <div class="post" style="border:double">
+            <div class="post" style="border:double; margin:10rpx; border-collapse:separate; border-spacing:5px">
                 <div class="user_name">
                     @if (Auth::user()->id == $post->user_id) 
                     <p><a href = "/my_page/">{{ $post->user->name }}</a></p>
@@ -36,7 +36,6 @@
                     <img src="{{ $post->image_path }}" alt="画像が読み込めません。"/>
                 </div>
                 @endif
-            </div>
             <div>
                 
                 @if (Auth::user()->id == $post->user_id) 
@@ -56,18 +55,19 @@
                 </div>
                 
                 @if (Auth::user()->is_like($post->id))
-                <form method="POST" action="{{ route('likes.unlike', $post->id) }}" style="border:inset; width:7%; padding:2px; text-align:center; background-color:rgba(255,105,180,0.5)">
+                <form method="POST" action="{{ route('likes.unlike', $post->id) }}" style="border:inset; width:7%; line-height:5px; padding:10px; text-align:center; background-color:rgba(255,105,180,0.5)">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="button btn btn-warning">いいね！</button>
                 </form>
                 @else
-                <form method="POST" action="{{ route('likes.like', $post->id) }}" style="border:outset; width:7%; padding:2px; text-align:center">
+                <form method="POST" action="{{ route('likes.like', $post->id) }}" style="border:outset; width:7%; line-height:5px; padding:10px; text-align:center">
    　　　　　　　    　　　　 @csrf
                      <button type="submit" class="button btn btn-success">いいね！</button>
                 </form>
                 @endif
                 
+            </div>
             </div>
             @endforeach
         　　</div>
